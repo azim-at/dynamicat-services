@@ -9,9 +9,9 @@ import {
   Globe,
   AppWindow,
   Layers,
-  FileCode,
-  Cloud,
-  ShieldCheck,
+  Paintbrush,
+  ShoppingCart,
+  Webhook,
 } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 import { Button } from "@/components/ui/button"
@@ -29,9 +29,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
   AppWindow,
   Layers,
-  FileCode,
-  Cloud,
-  ShieldCheck,
+  Paintbrush,
+  ShoppingCart,
+  Webhook,
 }
 
 export function ServicesOverview() {
@@ -73,7 +73,7 @@ export function ServicesOverview() {
     <section ref={sectionRef} className="py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div data-services-heading className="mx-auto max-w-2xl text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight leading-[1.15] sm:text-4xl">
             What We Do
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">

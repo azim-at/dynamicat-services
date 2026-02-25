@@ -14,6 +14,7 @@ export function Hero() {
     () => {
       if (!containerRef.current) return
 
+      // Content entrance animation
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
 
       tl.from("[data-hero-badge]", {
@@ -36,6 +37,25 @@ export function Hero() {
           { autoAlpha: 0, y: 20, duration: 0.5, stagger: 0.12 },
           "-=0.3"
         )
+
+      // Floating orb animations
+      const orbs = containerRef.current.querySelectorAll("[data-orb]")
+      orbs.forEach((orb, i) => {
+        const xRange = 40 + i * 15
+        const yRange = 30 + i * 10
+        const duration = 6 + i * 2
+
+        gsap.to(orb, {
+          x: `random(-${xRange}, ${xRange})`,
+          y: `random(-${yRange}, ${yRange})`,
+          scale: `random(0.8, 1.2)`,
+          duration,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+          repeatRefresh: true,
+        })
+      })
     },
     { scope: containerRef }
   )
@@ -51,6 +71,22 @@ export function Hero() {
         <div className="dot-grid-bg absolute inset-0 opacity-40" />
       </div>
 
+      {/* Floating gradient orbs */}
+      <div className="absolute inset-0 -z-5 overflow-hidden" aria-hidden="true">
+        <div
+          data-orb
+          className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/8 blur-3xl"
+        />
+        <div
+          data-orb
+          className="absolute top-1/3 -right-20 h-96 w-96 rounded-full bg-primary/6 blur-3xl"
+        />
+        <div
+          data-orb
+          className="absolute -bottom-16 left-1/3 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+        />
+      </div>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <div data-hero-badge>
@@ -60,7 +96,7 @@ export function Hero() {
           </div>
           <h1
             data-hero-heading
-            className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+            className="text-4xl font-bold tracking-tight leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl"
           >
             We Build Digital Products{" "}
             <span className="gradient-text">That Actually Perform</span>

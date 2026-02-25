@@ -7,9 +7,9 @@ import {
   Globe,
   AppWindow,
   Layers,
-  FileCode,
-  Cloud,
-  ShieldCheck,
+  Paintbrush,
+  ShoppingCart,
+  Webhook,
   CheckCircle,
 } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
@@ -35,9 +35,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
   AppWindow,
   Layers,
-  FileCode,
-  Cloud,
-  ShieldCheck,
+  Paintbrush,
+  ShoppingCart,
+  Webhook,
 }
 
 function ServiceCard({
@@ -137,7 +137,7 @@ export function ServicesContent() {
       {/* FAQ */}
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight leading-[1.15] text-center sm:text-4xl">
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-center text-muted-foreground text-lg">

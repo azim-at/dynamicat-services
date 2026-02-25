@@ -68,7 +68,7 @@ export function BlogFeed({ posts }: { posts: BlogPost[] }) {
               {featured.readingTime}
             </span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight leading-[1.15] sm:text-4xl">
             <Link
               href={`/blog/${featured.slug}`}
               className="hover:underline decoration-1 underline-offset-4"

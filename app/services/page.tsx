@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { constructMetadata, generateServiceSchema } from "@/lib/seo"
+import { constructMetadata, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
 import { ServicesContent } from "./services-content"
 import { CtaSection } from "@/components/sections/cta-section"
@@ -7,7 +7,7 @@ import { CtaSection } from "@/components/sections/cta-section"
 export const metadata: Metadata = constructMetadata({
   title: "Services",
   description:
-    "From website development to cloud infrastructure — explore the full range of development services we offer at Dynamicat.",
+    "From website development to cloud infrastructure — explore the full range of development services we offer at DynamicAT.",
   pathname: "/services",
 })
 
@@ -18,7 +18,7 @@ export default function ServicesPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight leading-[1.15] sm:text-5xl">
               Our Services
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -44,6 +44,22 @@ export default function ServicesPage() {
                 description: service.description,
               })
             )
+          ),
+        }}
+      />
+      {/* JSON-LD FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateFAQSchema()),
+        }}
+      />
+      {/* JSON-LD Breadcrumb */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbSchema([{ name: "Services", path: "/services" }])
           ),
         }}
       />

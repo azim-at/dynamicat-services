@@ -34,12 +34,17 @@ export function constructMetadata({
       "Next.js",
       "React",
       "full-stack development",
-      "Dynamicat",
+      "DynamicAT",
     ],
     authors: [{ name: siteConfig.creator }],
     creator: siteConfig.creator,
     metadataBase: new URL(siteConfig.url),
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      types: {
+        "application/rss+xml": `${siteConfig.url}/feed.xml`,
+      },
+    },
     openGraph: {
       type: "website",
       locale: "en_US",
@@ -85,6 +90,14 @@ export function generateWebSiteSchema() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   }
 }
 
@@ -128,5 +141,54 @@ export function generateBlogPostSchema(post: {
       name: siteConfig.name,
       url: siteConfig.url,
     },
+  }
+}
+
+export function generateFAQSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: siteConfig.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  }
+}
+
+export function generateBreadcrumbSchema(
+  items: { name: string; path: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      ...items.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: item.name,
+        item: `${siteConfig.url}${item.path}`,
+      })),
+    ],
+  }
+}
+
+export function generateSiteNavSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: siteConfig.navLinks.map((link) => link.label),
+    url: siteConfig.navLinks.map(
+      (link) => `${siteConfig.url}${link.href === "/" ? "" : link.href}`
+    ),
   }
 }

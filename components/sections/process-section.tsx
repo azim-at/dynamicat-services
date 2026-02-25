@@ -76,7 +76,7 @@ export function ProcessSection() {
     <section ref={sectionRef} className="py-16 md:py-24 bg-muted/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div data-process-heading className="mx-auto max-w-2xl text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight leading-[1.15] sm:text-4xl">
             How We Work
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">

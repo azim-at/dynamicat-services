@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: "Dynamicat",
+  name: "DynamicAT",
   description:
     "We turn your ideas into fast, scalable, and beautifully crafted digital products — from sleek websites to complex web applications, built to perform and designed to impress.",
   url: "https://dynamicat.co",
   ogImage: "/og-image.png",
-  creator: "Dynamicat",
+  creator: "DynamicAT",
   email: "azeem.talikoti@gmail.com",
   phones: {
     india: "+91 9535983796",
@@ -15,13 +15,14 @@ export const siteConfig = {
   socials: {
     github: "https://github.com/azim-at",
     linkedin: "https://www.linkedin.com/in/azim-at/",
+    instagram: "https://www.instagram.com/__iazim",
   },
   navLinks: [
     { label: "Home", href: "/", external: false },
     { label: "About", href: "/about", external: false },
     { label: "Services", href: "/services", external: false },
+    { label: "Projects", href: "/projects", external: false },
     { label: "Blog", href: "/blog", external: false },
-    { label: "Portfolio", href: "https://azim.dynamicat.co", external: true },
     { label: "Contact", href: "/contact", external: false },
   ] as const,
   services: [
@@ -33,19 +34,19 @@ export const siteConfig = {
       shortDescription:
         "Pixel-perfect websites that load fast, rank high, and convert visitors into customers.",
       description:
-        "We craft stunning, high-performance websites tailored to your brand. From corporate sites to landing pages, every pixel is intentional — built with clean code, responsive design, and SEO woven into every layer.",
+        "We craft stunning, high-performance websites tailored to your brand. From corporate sites and WordPress builds to landing pages — every pixel is intentional, built with clean code, responsive design, and SEO woven into every layer.",
       features: [
         "Responsive design for all devices",
         "SEO-optimized structure and content",
-        "Fast load times and performance tuning",
         "CMS integration (WordPress, headless CMS)",
-        "Analytics and tracking setup",
+        "Custom WordPress themes and plugins",
+        "Performance tuning and analytics setup",
       ],
     },
     {
       slug: "web-app-development",
       title: "Web Application Development",
-      category: "fullstack",
+      category: "app",
       icon: "AppWindow" as const,
       shortDescription:
         "Powerful web apps with intuitive interfaces and rock-solid backends that scale with you.",
@@ -53,7 +54,7 @@ export const siteConfig = {
         "We build web applications that people actually enjoy using. Whether it's a SaaS platform, admin dashboard, or customer portal — we deliver apps that are snappy, secure, and architected to grow alongside your business.",
       features: [
         "Single-page and server-rendered applications",
-        "Real-time features and API integrations",
+        "Real-time features and WebSocket integration",
         "User authentication and role management",
         "Database design and optimization",
         "Third-party service integrations",
@@ -61,78 +62,78 @@ export const siteConfig = {
     },
     {
       slug: "fullstack-development",
-      title: "Full-Stack Projects",
-      category: "fullstack",
+      title: "Full-Stack Development",
+      category: "app",
       icon: "Layers" as const,
       shortDescription:
         "End-to-end builds — frontend to backend to deployment — all under one roof.",
       description:
-        "Get the complete package. We handle every layer of your application — from the interface your users see to the servers humming in the background. Seamless integration, consistent quality, zero headaches.",
+        "Get the complete package. We handle every layer of your application — from the interface your users see to the servers and CI/CD pipelines humming in the background. Infrastructure, testing, and quality assurance are baked into every project.",
       features: [
         "Frontend and backend architecture",
-        "REST and GraphQL API development",
-        "Database design (MongoDB, SQL)",
-        "Server configuration and deployment",
-        "CI/CD pipeline setup",
-      ],
-    },
-    {
-      slug: "wordpress-development",
-      title: "WordPress Solutions",
-      category: "web",
-      icon: "FileCode" as const,
-      shortDescription:
-        "Custom WordPress experiences — themes, plugins, and e-commerce that just work.",
-      description:
-        "WordPress done right. We build custom themes, develop plugins, and create WooCommerce stores that are easy to manage, fast to load, and secure by default. Perfect for businesses that want power and simplicity.",
-      features: [
-        "Custom theme development",
-        "Plugin development and customization",
-        "WooCommerce integration",
-        "Performance optimization",
-        "Security hardening and maintenance",
-      ],
-    },
-    {
-      slug: "cloud-devops",
-      title: "Cloud & DevOps",
-      category: "cloud",
-      icon: "Cloud" as const,
-      shortDescription:
-        "Infrastructure that scales on demand — automated, monitored, and always available.",
-      description:
-        "We design cloud infrastructure that doesn't keep you up at night. From architecture to automated deployments, we make sure your apps run reliably on AWS, Azure, or Oracle Cloud — so you can focus on what matters.",
-      features: [
-        "Cloud architecture and migration",
+        "Cloud deployment and DevOps (AWS, Azure, Docker)",
         "CI/CD pipeline automation",
-        "Container orchestration (Docker, Kubernetes)",
-        "Infrastructure as Code (Terraform)",
-        "Monitoring, logging, and alerting",
+        "Comprehensive testing and QA",
+        "Monitoring, logging, and maintenance",
       ],
     },
     {
-      slug: "testing-qa",
-      title: "Testing & QA",
-      category: "cloud",
-      icon: "ShieldCheck" as const,
+      slug: "ui-ux-design",
+      title: "UI/UX Design",
+      category: "design",
+      icon: "Paintbrush" as const,
       shortDescription:
-        "Ship with confidence — comprehensive testing that catches bugs before your users do.",
+        "Thoughtful interfaces and seamless user experiences that keep people coming back.",
       description:
-        "Quality isn't optional. We build thorough testing strategies — unit, integration, end-to-end, and performance — so your application works flawlessly from launch day and every day after.",
+        "Great products start with great design. We create intuitive user interfaces and delightful experiences grounded in research — from wireframes and prototypes to polished visual designs that align with your brand and convert.",
       features: [
-        "Unit and integration testing",
-        "End-to-end automated testing",
-        "Performance and load testing",
-        "Security vulnerability assessment",
-        "Code review and quality audits",
+        "User research and persona development",
+        "Wireframing and interactive prototyping",
+        "Visual design and design systems",
+        "Usability testing and iteration",
+        "Mobile-first responsive design",
+      ],
+    },
+    {
+      slug: "ecommerce-solutions",
+      title: "E-Commerce Solutions",
+      category: "web",
+      icon: "ShoppingCart" as const,
+      shortDescription:
+        "Online stores that sell — beautiful storefronts with seamless checkout experiences.",
+      description:
+        "We build e-commerce experiences that drive revenue. From custom Shopify and WooCommerce stores to fully bespoke platforms — we handle product catalogs, payment gateways, inventory management, and everything in between.",
+      features: [
+        "Custom storefront design and development",
+        "Shopify and WooCommerce integration",
+        "Payment gateway and checkout optimization",
+        "Inventory and order management",
+        "Analytics, SEO, and conversion tracking",
+      ],
+    },
+    {
+      slug: "api-development",
+      title: "API & Integration Development",
+      category: "app",
+      icon: "Webhook" as const,
+      shortDescription:
+        "Robust APIs and seamless integrations that connect your systems and power your products.",
+      description:
+        "We architect and build APIs that are fast, secure, and a joy to work with. Whether you need REST endpoints, GraphQL schemas, or third-party integrations — we create the connective tissue that makes your tech stack work as one.",
+      features: [
+        "RESTful and GraphQL API design",
+        "Third-party API integrations",
+        "Microservices architecture",
+        "API documentation and versioning",
+        "Authentication, rate limiting, and security",
       ],
     },
   ],
   serviceCategories: [
     { value: "all", label: "All Services" },
-    { value: "web", label: "Web Development" },
-    { value: "fullstack", label: "Full-Stack" },
-    { value: "cloud", label: "Cloud & DevOps" },
+    { value: "design", label: "Design" },
+    { value: "web", label: "Web" },
+    { value: "app", label: "Applications" },
   ],
   process: [
     {
@@ -179,35 +180,35 @@ export const siteConfig = {
   ],
   testimonials: [
     {
-      name: "Sarah Johnson",
-      role: "CEO",
-      company: "TechFlow Inc.",
+      name: "Training Director",
+      role: "Training Director",
+      company: "TrainingX, London",
       content:
-        "Dynamicat transformed our outdated website into a modern, high-performing platform. Our conversion rate jumped 40% in the first month. Couldn't be happier with the results.",
+        "Azim built our e-learning platform with course flows, quizzes, and certifications — all working flawlessly for our nursing students. Clear communication, on-time delivery, and a solid final product.",
       avatar: "",
     },
     {
-      name: "Michael Chen",
-      role: "Founder",
-      company: "StartupLab",
+      name: "Operations Manager",
+      role: "Operations Manager",
+      company: "Valcraft Engineers",
       content:
-        "They built our entire SaaS platform from scratch. The code quality and architecture are top-notch. If you're serious about your product, work with Dynamicat.",
+        "He turned our requirements into a clean, professional website that truly reflects our brand. It's responsive, easy to navigate, and exactly what we needed to establish our online presence.",
       avatar: "",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Marketing Director",
-      company: "GrowthCo",
+      name: "Managing Partner",
+      role: "Managing Partner",
+      company: "Fils Consultancy LLC, UAE",
       content:
-        "Our e-commerce platform was delivered on time and on budget. The site is blazing fast, and our customers love the seamless shopping experience. Truly professional.",
+        "Our consultancy website looks polished and professional. Smooth animations, clean layout, and great performance on every device. Azim's attention to detail made the whole process effortless.",
       avatar: "",
     },
     {
-      name: "David Park",
-      role: "CTO",
-      company: "CloudNine Solutions",
+      name: "Product Owner",
+      role: "Product Owner",
+      company: "Vital Hops",
       content:
-        "They migrated our infrastructure to AWS and set up CI/CD from scratch. Deployment times went from hours to minutes. Our system has never been more reliable.",
+        "Azim handled both frontend and backend with ease. The platform is secure, scalable, and modern — and he quickly grasped complex workflows like asset management and beneficiary tracking.",
       avatar: "",
     },
   ],

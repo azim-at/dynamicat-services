@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
-import { constructMetadata, generateBlogPostSchema } from "@/lib/seo"
+import { constructMetadata, generateBlogPostSchema, generateBreadcrumbSchema } from "@/lib/seo"
 import { getPostBySlug, getAllSlugs, extractToc, slugify } from "@/lib/blog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -64,7 +64,7 @@ export default async function BlogPostPage({
                 {post.readingTime}
               </span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight leading-[1.15] sm:text-4xl md:text-5xl">
               {post.title}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">{post.excerpt}</p>
@@ -127,6 +127,17 @@ export default async function BlogPostPage({
               date: post.date,
               author: post.author,
             })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbSchema([
+              { name: "Blog", path: "/blog" },
+              { name: post.title, path: `/blog/${post.slug}` },
+            ])
           ),
         }}
       />

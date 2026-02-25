@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { List } from "lucide-react"
 import type { TocItem } from "@/lib/blog"
 import { Button } from "@/components/ui/button"
@@ -20,7 +20,35 @@ function smoothScroll(e: React.MouseEvent, id: string) {
   }
 }
 
-function MobileToc({ items }: { items: TocItem[] }) {
+function useActiveHeading(ids: string[]) {
+  const [activeId, setActiveId] = useState<string>("")
+
+  useEffect(() => {
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[]
+    if (elements.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id)
+            break
+          }
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    )
+
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [ids])
+
+  return activeId
+}
+
+function MobileToc({ items, activeId }: { items: TocItem[]; activeId: string }) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -52,7 +80,11 @@ function MobileToc({ items }: { items: TocItem[] }) {
                     smoothScroll(e, item.id)
                     setOpen(false)
                   }}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-sm transition-colors ${
+                    activeId === item.id
+                      ? "text-foreground font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.text}
                 </a>
@@ -66,13 +98,15 @@ function MobileToc({ items }: { items: TocItem[] }) {
 }
 
 export function TableOfContents({ items }: { items: TocItem[] }) {
+  const activeId = useActiveHeading(items.map((item) => item.id))
+
   if (items.length === 0) return null
 
   return (
     <>
       {/* Mobile/tablet: collapsible block */}
       <div className="xl:hidden mb-8">
-        <MobileToc items={items} />
+        <MobileToc items={items} activeId={activeId} />
       </div>
 
       {/* Desktop: fixed sidebar */}
@@ -85,7 +119,11 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => smoothScroll(e, item.id)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-sm transition-colors block -ml-px border-l pl-4 ${
+                    activeId === item.id
+                      ? "border-foreground text-foreground font-medium"
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.text}
                 </a>

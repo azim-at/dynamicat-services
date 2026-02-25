@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "next-themes"
-import { constructMetadata, generateOrganizationSchema, generateWebSiteSchema } from "@/lib/seo"
+import { constructMetadata, generateOrganizationSchema, generateWebSiteSchema, generateSiteNavSchema } from "@/lib/seo"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "@/components/ui/sonner"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { ScrollToTop } from "@/components/layout/scroll-to-top"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -32,14 +33,15 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           <TooltipProvider>
             <Header />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 pb-20">{children}</main>
             <Footer />
+            <ScrollToTop />
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
@@ -49,6 +51,7 @@ export default function RootLayout({
             __html: JSON.stringify([
               generateOrganizationSchema(),
               generateWebSiteSchema(),
+              generateSiteNavSchema(),
             ]),
           }}
         />

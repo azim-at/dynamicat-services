@@ -44,7 +44,7 @@ export function StatsSection() {
             <div key={stat.label} className="text-center">
               <AnimatedCounter
                 value={stat.value}
-                className="text-4xl font-bold tracking-tight md:text-5xl"
+                className="text-4xl font-bold tracking-tight leading-[1.15] md:text-5xl"
               />
               <p
                 data-stat-label

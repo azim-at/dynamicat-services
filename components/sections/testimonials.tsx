@@ -56,12 +56,11 @@ export function Testimonials() {
     <section ref={sectionRef} className="py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div data-testimonials-heading className="mx-auto max-w-2xl text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            What Our Clients Say
+          <h2 className="text-3xl font-bold tracking-tight leading-[1.15] sm:text-4xl">
+            What Clients Say
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Don&apos;t take our word for it — here&apos;s what the people we&apos;ve worked with
-            have to say.
+            Feedback from people I&apos;ve worked with on freelance projects.
           </p>
         </div>
 
@@ -79,7 +78,7 @@ export function Testimonials() {
                     key={index}
                     className="md:basis-1/2"
                   >
-                    <Card className="h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
+                    <Card className="h-full">
                       <CardContent className="pt-6">
                         <div className="mb-4 flex gap-0.5">
                           {Array.from({ length: 5 }).map((_, i) => (

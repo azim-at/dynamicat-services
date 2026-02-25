@@ -1,6 +1,6 @@
 import { Suspense } from "react"
-import { Mail, MapPin, Phone, ExternalLink, Github, Linkedin } from "lucide-react"
-import { constructMetadata } from "@/lib/seo"
+import { Mail, MapPin, Phone, MessageCircle, ExternalLink, Github, Linkedin } from "lucide-react"
+import { constructMetadata, generateBreadcrumbSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
 import {
   Card,
@@ -14,7 +14,7 @@ import { ContactForm } from "@/components/sections/contact-form"
 export const metadata = constructMetadata({
   title: "Contact",
   description:
-    "Get in touch with Dynamicat. Tell us about your project and we'll get back to you with a free consultation and custom quote.",
+    "Get in touch with DynamicAT. Tell us about your project and we'll get back to you with a free consultation and custom quote.",
   pathname: "/contact",
 })
 
@@ -24,7 +24,7 @@ export default function ContactPage() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight leading-[1.15] sm:text-5xl">
               Get in Touch
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -69,22 +69,46 @@ export default function ContactPage() {
                         </a>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-primary shrink-0" />
+                    <div className="flex items-start gap-3">
+                      <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-medium">Phone</p>
-                        <a
-                          href={`tel:${siteConfig.phones.india}`}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors block"
-                        >
-                          {siteConfig.phones.india} (India)
-                        </a>
-                        <a
-                          href={`tel:${siteConfig.phones.uae}`}
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors block"
-                        >
-                          {siteConfig.phones.uae} (UAE)
-                        </a>
+                        <p className="text-sm font-medium">Phone & WhatsApp</p>
+                        <div className="mt-1 space-y-1.5">
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <a
+                              href={`tel:${siteConfig.phones.uae}`}
+                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              {siteConfig.phones.uae} (UAE)
+                            </a>
+                            <a
+                              href="https://wa.me/971509137418"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400 transition-colors hover:bg-green-500/20"
+                            >
+                              <MessageCircle className="h-3 w-3" />
+                              WhatsApp
+                            </a>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                            <a
+                              href={`tel:${siteConfig.phones.india}`}
+                              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              {siteConfig.phones.india} (India)
+                            </a>
+                            <a
+                              href="https://wa.me/919535983796"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400 transition-colors hover:bg-green-500/20"
+                            >
+                              <MessageCircle className="h-3 w-3" />
+                              WhatsApp
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -123,6 +147,15 @@ export default function ContactPage() {
                       LinkedIn
                     </a>
                     <a
+                      href={siteConfig.socials.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+                      Instagram
+                    </a>
+                    <a
                       href={siteConfig.portfolioUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -147,9 +180,9 @@ export default function ContactPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            name: "Contact Dynamicat",
+            name: "Contact DynamicAT",
             description:
-              "Get in touch with Dynamicat for a free consultation and custom quote.",
+              "Get in touch with DynamicAT for a free consultation and custom quote.",
             mainEntity: {
               "@type": "Organization",
               name: siteConfig.name,
@@ -157,6 +190,14 @@ export default function ContactPage() {
               url: siteConfig.url,
             },
           }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbSchema([{ name: "Contact", path: "/contact" }])
+          ),
         }}
       />
     </>
